@@ -16,6 +16,11 @@ zerops:
       deployFiles: [MailHog]
     run:
       base: go@1
+      ports:
+        - port: 8025
+          httpSupport: true
+        - port: 1025
+          httpSupport: true
       initCommands:
         - |
           sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
