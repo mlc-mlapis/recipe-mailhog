@@ -37,8 +37,8 @@ services:
     type: go@1
     verticalAutoscaling:
       cpuMode: SHARED
-      minCpu: 4
-      maxCpu: 4
+      minCpu: 1
+      minRam: 1
     minContainers: 1
     maxContainers: 1
     buildFromGit: https://github.com/zeropsio/recipe-mailhog@main
