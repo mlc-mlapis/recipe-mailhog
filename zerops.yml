@@ -23,12 +23,12 @@ zerops:
           httpSupport: true
         - port: 1025
           httpSupport: true
-      # initCommands:
-        # - |
-        #  sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
-        #  usermod -aG sudo recipe
-        # - |
-        #  chown recipe:recipe /var/www/MailHog
-        #  chmod 775 /var/www/MailHog
-      # start: su recipe -c ./MailHog
-      start: ./MailHog
+      initCommands:
+        - |
+          sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
+          sudo usermod -aG sudo recipe
+        - |
+          sudo chown recipe:recipe /var/www/MailHog
+          sudo chmod 775 /var/www/MailHog
+      start: su recipe -c ./MailHog
+      # start: ./MailHog
