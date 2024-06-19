@@ -25,7 +25,7 @@ zerops:
           httpSupport: true
       initCommands:
         - |
-          sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
+          adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
           usermod -aG sudo recipe
         - |
           chown recipe:recipe /var/www/MailHog
