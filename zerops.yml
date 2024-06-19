@@ -27,6 +27,7 @@ zerops:
         - |
           sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
           sudo usermod -aG sudo recipe
+          sudo usermod -aG sudo zerops
         - |
           sudo chown recipe:recipe /var/www/MailHog
           sudo chmod 775 /var/www/MailHog
