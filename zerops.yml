@@ -1,0 +1,25 @@
+zerops:
+  - setup: mailhog
+    envVariables:
+      MH_API_BIND_ADDR: 0.0.0.0:8025
+      MH_CORS_ORIGIN: "*"
+      MH_HOSTNAME: mailhog
+      MH_SMTP_BIND_ADDR: 0.0.0.0:1025
+      MH_UI_BIND_ADDR: 0.0.0.0:8025
+    build:
+      base: [go@1]
+      buildCommands:
+        - go install github.com/mailhog/MailHog@v1.0.1
+        - |
+          cd ~/go/bin
+          cp MailHog /build/source/MailHog
+      deploy: [MailHog]
+    run:
+      initCommands:
+        - |
+          adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
+          usermod -aG sudo recipe
+        - |
+          chown recipe:recipe /var/www/MailHog
+          chmod 775 /var/www/MailHog
+      start: su recipe -c ./MailHog
