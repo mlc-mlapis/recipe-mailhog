@@ -16,7 +16,9 @@ zerops:
           cp MailHog /build/source/MailHog
       deployFiles: [MailHog]
     run:
-      base: [go@1, nodejs@18]
+      base:
+        - go@1
+        - nodejs@18
       # os: ubuntu
       ports:
         - port: 8025
