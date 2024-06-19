@@ -35,11 +35,10 @@ services:
     enableSubdomainAccess: true
   - hostname: mailhog
     type: go@1
-    ports:
-      - port: 8025
-        httpSupport: true
-      - port: 1025
-        httpSupport: true
+    verticalAutoscaling:
+      cpuMode: SHARED
+      minCpu: 4
+      maxCpu: 4
     minContainers: 1
     maxContainers: 1
     buildFromGit: https://github.com/zeropsio/recipe-mailhog@main
