@@ -8,6 +8,7 @@ zerops:
       MH_UI_BIND_ADDR: 0.0.0.0:8025
     build:
       base: go@1
+      os: ubuntu
       buildCommands:
         - go install github.com/mailhog/MailHog@v1.0.1
         - |
@@ -16,6 +17,7 @@ zerops:
       deployFiles: [MailHog]
     run:
       base: go@1
+      os: ubuntu
       ports:
         - port: 8025
           httpSupport: true
