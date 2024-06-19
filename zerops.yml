@@ -8,7 +8,7 @@ zerops:
       MH_UI_BIND_ADDR: 0.0.0.0:8025
     build:
       base: go@1
-      os: ubuntu
+      # os: ubuntu
       buildCommands:
         - go install github.com/mailhog/MailHog@v1.0.1
         - |
@@ -17,19 +17,21 @@ zerops:
       deployFiles: [MailHog]
     run:
       base: go@1
-      os: ubuntu
+      # os: ubuntu
       ports:
         - port: 8025
           httpSupport: true
         - port: 1025
           httpSupport: true
       initCommands:
-        - |
-          sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
-          sudo usermod -aG sudo recipe
-          sudo usermod -aG sudo zerops
-        - |
-          sudo chown recipe:recipe /var/www/MailHog
-          sudo chmod 775 /var/www/MailHog
-      start: su recipe -c ./MailHog
-      # start: ./MailHog
+        # Actually, the root user is not used by default anymore.
+        # The zerops user is used instead, so the following commands
+        # are not necessary, if you need to run the executable.
+        # - |
+        #  sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
+        #  sudo usermod -aG sudo recipe
+        # - |
+        #  sudo chown recipe:recipe /var/www/MailHog
+        #  sudo chmod 775 /var/www/MailHog
+      # start: su recipe -c ./MailHog
+      start: ./MailHog
