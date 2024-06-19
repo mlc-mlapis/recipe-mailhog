@@ -7,17 +7,18 @@ zerops:
       MH_SMTP_BIND_ADDR: 0.0.0.0:1025
       MH_UI_BIND_ADDR: 0.0.0.0:8025
     build:
-      base: [go@1]
+      base: go@1
       buildCommands:
         - go install github.com/mailhog/MailHog@v1.0.1
         - |
           cd ~/go/bin
           cp MailHog /build/source/MailHog
-      deploy: [MailHog]
+      deployFiles: [MailHog]
     run:
+      base: go@1
       initCommands:
         - |
-          adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
+          sudo adduser --disabled-password --gecos "" --shell /bin/bash recipe || true
           usermod -aG sudo recipe
         - |
           chown recipe:recipe /var/www/MailHog
