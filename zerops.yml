@@ -22,7 +22,7 @@ zerops:
         - port: 8025
           httpSupport: true
         - port: 1025
-      initCommands:
+      # initCommands:
         # Actually, the root user is not used by default anymore.
         # The zerops user is used instead, so the following commands
         # are not necessary, if you need to run the executable.
