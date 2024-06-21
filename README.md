@@ -22,13 +22,14 @@ services:
   - hostname: storage
     type: object-storage
     objectStorageSize: 2
-    objectStoragePolicy: public-read
+    objectStoragePolicy: public-objects-read
     priority: 1
   - hostname: ghost
     type: nodejs@18
-    ports:
-      - port: 2368
-        httpSupport: true
+    verticalAutoscaling:
+      cpuMode: SHARED
+      minCpu: 1
+      minRam: 1
     minContainers: 1
     maxContainers: 1
     buildFromGit: https://github.com/zeropsio/recipe-ghost@main

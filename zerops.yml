@@ -1,11 +1,5 @@
 zerops:
   - setup: mailhog
-    envVariables:
-      MH_API_BIND_ADDR: 0.0.0.0:8025
-      MH_CORS_ORIGIN: "*"
-      MH_HOSTNAME: mailhog
-      MH_SMTP_BIND_ADDR: 0.0.0.0:1025
-      MH_UI_BIND_ADDR: 0.0.0.0:8025
     build:
       base: go@1
       # os: ubuntu
@@ -18,11 +12,16 @@ zerops:
     run:
       base: go@1
       # os: ubuntu
+      envVariables:
+        MH_API_BIND_ADDR: 0.0.0.0:8025
+        MH_CORS_ORIGIN: "*"
+        MH_HOSTNAME: mailhog
+        MH_SMTP_BIND_ADDR: 0.0.0.0:1025
+        MH_UI_BIND_ADDR: 0.0.0.0:8025
       ports:
         - port: 8025
           httpSupport: true
         - port: 1025
-          httpSupport: true
       initCommands:
         # Actually, the root user is not used by default anymore.
         # The zerops user is used instead, so the following commands
